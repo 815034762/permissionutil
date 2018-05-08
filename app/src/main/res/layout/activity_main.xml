@@ -9,6 +9,9 @@
 
     <!--
       this is my first explain
+      ==========================
+      这是从分支一提交的注释
+      ==========================
       -->
     <TextView
         android:id="@+id/tv_submit"
