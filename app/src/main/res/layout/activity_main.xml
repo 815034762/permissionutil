@@ -9,7 +9,7 @@
 
     <!--
       this is my first explain
-      从本地分支提交到远程分支
+      从本地分支提交到远程分支,为什么会拒绝呢?
       -->
     <TextView
         android:id="@+id/tv_submit"
