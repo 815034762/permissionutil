@@ -7,6 +7,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <!--
+      this is my first explain
+      -->
     <TextView
         android:id="@+id/tv_submit"
         android:layout_width="match_parent"
@@ -17,7 +20,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <!--end this my first explain-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
