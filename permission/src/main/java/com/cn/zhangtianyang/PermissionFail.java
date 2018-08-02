@@ -1,4 +1,4 @@
-package permission;
+package com.cn.zhangtianyang;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,12 +7,10 @@ import java.lang.annotation.Target;
 
 /**
  * description:
- * <p/>
- * Created by 曾辉 on 2016/11/12.
- * Version：1.0
+ * 6.0的权限管理框架
  */
 @Target(ElementType.METHOD)// 放在什么位置  ElementType.METHOD 方法上面
 @Retention(RetentionPolicy.RUNTIME)// 是编译时检测 还是 运行时检测
-public @interface PermissionSucceed {
-    public int requestCode();// 请求码
+public @interface PermissionFail {
+     int requestCode();// 请求码
 }

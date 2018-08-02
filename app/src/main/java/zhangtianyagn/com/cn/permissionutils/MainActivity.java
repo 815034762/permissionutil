@@ -14,10 +14,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.cn.zhangtianyang.PermissionFail;
+import com.cn.zhangtianyang.PermissionHelper;
+import com.cn.zhangtianyang.PermissionSucceed;
+
+import java.util.HashMap;
+
 import permission.PermissionConstants;
-import permission.PermissionFail;
-import permission.PermissionHelper;
-import permission.PermissionSucceed;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                PermissionHelper.with(MainActivity.this).executeObj(MainActivity.this).requestCode(PermissionConstants.STORATE_WRITE).requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE).request();
+                PermissionHelper.with(MainActivity.this).executeObj(MainActivity.this).requestCode(PermissionConstants.CAMERA).requestPermission(Manifest.permission.CAMERA).request();
             }
         });
 
@@ -99,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     PermissionHelper.requestPermissionsResult(this, requestCode, permissions);
                     break;
                 case PermissionConstants.CAMERA:
-                    PermissionHelper.requestPermissionsResult(this, requestCode, permissions,adapter);
+                    PermissionHelper.requestPermissionsResult(this, requestCode, permissions, adapter);
                     break;
             }
         }
@@ -108,16 +111,16 @@ public class MainActivity extends AppCompatActivity {
     /*************
      * Android 6.0的权限申请
      ************/
-    @PermissionSucceed(requestCode = PermissionConstants.STORATE_WRITE)
-    private void callStorageWrite() {
+    @PermissionSucceed(requestCode = PermissionConstants.CAMERA)
+    private void callStorageWrite(HashMap<String,Object> param) {
 
-        Toast.makeText(MainActivity.this,"您已经同意了这个请求",Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "您已经同意了这个请求", Toast.LENGTH_SHORT).show();
     }
 
-    @PermissionFail(requestCode = PermissionConstants.STORATE_WRITE)
-    private void callStorageWriteFail() {
+    @PermissionFail(requestCode = PermissionConstants.CAMERA)
+    private void callStorageWriteFail(HashMap<String,Object> param) {
 
-        Toast.makeText(MainActivity.this,"您已经拒绝了这个请求",Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "您已经拒绝了这个请求", Toast.LENGTH_SHORT).show();
     }
 
     /****************************************************end在线更新*************************************************/

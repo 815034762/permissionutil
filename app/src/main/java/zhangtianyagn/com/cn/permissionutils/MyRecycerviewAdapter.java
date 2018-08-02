@@ -2,7 +2,6 @@ package zhangtianyagn.com.cn.permissionutils;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,14 +10,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cn.zhangtianyang.PermissionFail;
+import com.cn.zhangtianyang.PermissionHelper;
+import com.cn.zhangtianyang.PermissionSucceed;
+
 import java.util.HashMap;
 
 import permission.PermissionConstants;
-import permission.PermissionFail;
-import permission.PermissionHelper;
-import permission.PermissionSucceed;
-
-import static java.security.AccessController.getContext;
 
 public class MyRecycerviewAdapter extends RecyclerView.Adapter<MyRecycerviewAdapter.ViewHolder> {
 
@@ -44,10 +42,9 @@ public class MyRecycerviewAdapter extends RecyclerView.Adapter<MyRecycerviewAdap
             @Override
             public void onClick(View view) {
 
-                //.executeObj(MyRecycerviewAdapter.this)
                 HashMap<String,Object> param = new HashMap<>();
                 param.put("key","这是一个附带参数的权限请求");
-                PermissionHelper.with(mContext).requestCode(PermissionConstants.CAMERA).setParam(param).requestPermission(Manifest.permission.CAMERA).request();
+                PermissionHelper.with(mContext).requestCode(PermissionConstants.CAMERA).executeObj(MyRecycerviewAdapter.this).setParam(param).requestPermission(Manifest.permission.CAMERA).request();
             }
         });
     }
@@ -72,13 +69,13 @@ public class MyRecycerviewAdapter extends RecyclerView.Adapter<MyRecycerviewAdap
     @PermissionSucceed(requestCode = PermissionConstants.CAMERA)
     private void callStorageWrite(HashMap<String,Object> param) {
 
-        Toast.makeText(mContext,"Adapter回调您已经同意了这个请求" + param.get("key"),Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext,"Adapter回调您已经同意了这个请求,请求参数是: " + param.get("key"),Toast.LENGTH_SHORT).show();
     }
 
     @PermissionFail(requestCode = PermissionConstants.CAMERA)
     private void callStorageWriteFail(HashMap<String,Object> param) {
 
-        Toast.makeText(mContext,"Adapter回调您已经拒绝了这个请求"+ param.get("key"),Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext,"Adapter回调您已经拒绝了这个请求,请求参数是: "+ param.get("key"),Toast.LENGTH_SHORT).show();
     }
 
 }

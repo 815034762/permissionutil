@@ -1,4 +1,4 @@
-package permission;
+package com.cn.zhangtianyang;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
@@ -6,7 +6,6 @@ import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -19,7 +18,10 @@ import java.util.List;
  * Version：1.0
  */
 public class PermissionUtils {
-    // 这个类里面所有的都是静态方法  所有不能让别人去new对象
+
+    /**
+     *  这个类里面所有的都是静态方法  所有不能让别人去new对象
+     */
     private PermissionUtils(){
         throw new UnsupportedOperationException("cannot be instantiated");
     }
@@ -67,15 +69,16 @@ public class PermissionUtils {
     private static void executeMethod(Object reflectObject, Method method, HashMap<String,Object> params) {
         // 反射执行方法  第一个是传该方法是属于哪个类   第二个参数是传参数
         try {
-
-            method.setAccessible(true); // 允许执行私有方法
+            // 允许执行私有方法
+            method.setAccessible(true);
             //没参数执行
             if(null == params || params.isEmpty())
             {
                 method.invoke(reflectObject);
             }else
             {
-                method.invoke(reflectObject,params);//new Object[]{}
+                //new Object[]{}
+                method.invoke(reflectObject,params);
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
