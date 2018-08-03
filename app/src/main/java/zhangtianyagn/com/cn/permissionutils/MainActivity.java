@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -42,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                PermissionHelper.with(MainActivity.this).executeObj(MainActivity.this).requestCode(PermissionConstants.CAMERA).requestPermission(Manifest.permission.CAMERA).request();
+                HashMap<String,Object> param = new HashMap<>();
+                param.put("key","这是一个附带参数的权限请求");
+                //.setParam(param)
+                PermissionHelper.with(MainActivity.this).requestCode(PermissionConstants.STORATE_WRITE).executeObj(MainActivity.this).requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE).request();
             }
         });
 
@@ -99,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             //权限请求成功
             switch (requestCode) {
                 case PermissionConstants.STORATE_WRITE:
-                    PermissionHelper.requestPermissionsResult(this, requestCode, permissions);
+                    PermissionHelper.requestPermissionsResult(this, requestCode, permissions,this);
                     break;
                 case PermissionConstants.CAMERA:
                     PermissionHelper.requestPermissionsResult(this, requestCode, permissions, adapter);
@@ -108,21 +112,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*************
-     * Android 6.0的权限申请
-     ************/
-    @PermissionSucceed(requestCode = PermissionConstants.CAMERA)
-    private void callStorageWrite(HashMap<String,Object> param) {
+    /**
+     * Android 6.0的权限申请，注意权限回调成功或者失败的方法，参数中必须要有HashMap，否则会报异常，崩溃哦
+     */
+    @PermissionSucceed(requestCode = PermissionConstants.STORATE_WRITE)
+    private void callStorageWrite(@Nullable HashMap<String,Object> param) {
 
-        Toast.makeText(MainActivity.this, "您已经同意了这个请求", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Activity回调您已经同意了这个请求,请求参数是: ",Toast.LENGTH_SHORT).show();
     }
 
-    @PermissionFail(requestCode = PermissionConstants.CAMERA)
-    private void callStorageWriteFail(HashMap<String,Object> param) {
+    @PermissionFail(requestCode = PermissionConstants.STORATE_WRITE)
+    private void callStorageWriteFail(@Nullable HashMap<String,Object> param) {
 
-        Toast.makeText(MainActivity.this, "您已经拒绝了这个请求", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Activity回调您已经拒绝了这个请求,请求参数是: ",Toast.LENGTH_SHORT).show();
     }
-
-    /****************************************************end在线更新*************************************************/
 
 }

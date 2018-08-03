@@ -72,14 +72,17 @@ public class PermissionUtils {
             // 允许执行私有方法
             method.setAccessible(true);
             //没参数执行
-            if(null == params || params.isEmpty())
-            {
-                method.invoke(reflectObject);
-            }else
-            {
+//            if(null == params || params.isEmpty())
+//            {
+//                method.invoke(reflectObject);
+//            }else
+//            {
                 //new Object[]{}
-                method.invoke(reflectObject,params);
-            }
+            /**
+             * 不论param为不为null都要附HashMap<>带参数
+             */
+            method.invoke(reflectObject,params);
+//            }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {

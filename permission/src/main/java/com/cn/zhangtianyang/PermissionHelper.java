@@ -31,7 +31,9 @@ public class PermissionHelper {
      * 请求权限成功或失败执行对象
      */
     private static Object executeObj = null;
-    //参数
+    /**
+     * 参数
+     */
     private static HashMap<String, Object> params = new HashMap<>();
     private int mRequestCode;
     private String[] mRequestPermission;
@@ -146,7 +148,7 @@ public class PermissionHelper {
             // 执行什么方法并不确定 那么我们只能采用注解的方式给方法打一个标记，
             // 然后通过反射去执行。  注解 + 反射  执行Activity里面的callPhone
             if (null == executeObj) {
-                PermissionUtils.executeSucceedMethod(mObject, mRequestCode, params);
+                    PermissionUtils.executeSucceedMethod(mObject, mRequestCode, params);
             } else {
 
                 PermissionUtils.executeSucceedMethod(executeObj, mRequestCode, params);

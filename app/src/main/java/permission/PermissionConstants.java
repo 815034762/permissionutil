@@ -48,7 +48,7 @@ public class PermissionConstants {
         authoritys.put(RECORD__PRESS_VOICE_CODE, "android.permission.RECORD_AUDIO");
         authoritys.put(RECORD_VOICE_CODE, "android.permission.RECORD_AUDIO");
         /***读取SD卡的权限***/
-        authoritys.put(STORATE_WRITE, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"});
+        authoritys.put(STORATE_WRITE, new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"});
     }
 
     public static Object getAuthorityByCode(int requstCode) {
