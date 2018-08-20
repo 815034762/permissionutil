@@ -7,7 +7,7 @@
 
 1. 添加依赖
 `compile 'com.cn.zty:permission:1.0.0'` 
-例子:我们要在一个adapter的item里面请求一个录音的权限，如果成功了就把那个Item的值拿过来，一般情况下我们请求后，就不能和adapter点击的item有关系了。
+2.例如我们要在一个adapter的item里面请求一个录音的权限，如果成功了就把那个Item的值拿过来，一般情况下我们请求后，就不能和adapter点击的item有关系了。
 因为中间有申请回调。而这时用我的这个框架就可以实现申请权限成功后，传递参数了。具体用法如下:
 ```   
 public class MyRecycerviewAdapter extends RecyclerView.Adapter<MyRecycerviewAdapter.ViewHolder> {
