@@ -6,14 +6,11 @@
 ### 用法 | Usage
 
 1. 添加依赖
-'compile 'com.cn.zty:permission:1.0.0''` 
+`compile 'com.cn.zty:permission:1.0.0'` 
 ```例子，我们要在一个adapter的item里面请求一个录音的权限，如果成功了就把那个Item的值拿过来，一般情况下我们请求后，就不能和adapter点击的item有关系了。因为中间有申请回调。而这时用我的这个框架就可以实现申请权限成功后，传递参数了。具体用法如下:
 ```
-`   
-public class MyRecycerviewAdapter extends RecyclerView.Adapter<MyRecycerviewAdapter.ViewHolder> {
-
+`   public class MyRecycerviewAdapter extends RecyclerView.Adapter<MyRecycerviewAdapter.ViewHolder> {
     private Activity mContext;
-
     public MyRecycerviewAdapter(Activity mContext) {
         this.mContext = mContext;
     }
@@ -69,16 +66,17 @@ public class MyRecycerviewAdapter extends RecyclerView.Adapter<MyRecycerviewAdap
 
         Toast.makeText(mContext,"Adapter回调您已经拒绝了这个请求,请求参数是: "+ param.get("key"),Toast.LENGTH_SHORT).show();
     }
-
 }
+
 `
 
 ```
 然后再activity里面重写申请权限的回调
 ```
+
 `
  @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+ public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 
         boolean hasAllGranted = true;
         for (int i = 0; i < grantResults.length; ++i) {
